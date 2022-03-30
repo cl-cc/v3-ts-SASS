@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- table -->
     <itemTable @on-list="go_page" :list="tableList.tableData" :page="tableList.num" />
   </div>
 </template>
@@ -14,6 +15,7 @@ type Item = {
   num: number;
 };
 
+//分页
 function go_page(val: number) {
   tableList.currentPage = val;
   getData();
@@ -25,6 +27,7 @@ const tableList = reactive<Item>({
   num: 0,
 });
 
+//获取数据
 getData();
 function getData() {
   let data = {

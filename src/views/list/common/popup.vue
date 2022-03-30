@@ -1,4 +1,5 @@
 <template>
+  <!-- add/edit弹窗 -->
   <div>
     <el-dialog v-model="dialogVisible" :title="Tips" width="30%" :before-close="close">
       <el-form ref="addForm" :model="addFormField" label-width="100px" :rules="rules">
@@ -22,8 +23,8 @@
   </div>
 </template>
 <script setup lang="ts">
+//获取element实例
 import { FormInstance } from "element-plus";
-
 const addForm = ref<FormInstance>();
 
 type Item = {
@@ -31,7 +32,7 @@ type Item = {
   Tips: string;
   addFormField: any;
 };
-
+//验证必填
 const rules = {
   street_name: [{ required: true, message: "请输入镇街名称", trigger: "blur" }],
   recover_num: [{ required: true, message: "请输入覆盖户数量", trigger: "blur" }],
@@ -40,6 +41,7 @@ const rules = {
 
 const emit = defineEmits(["on-submit", "on-close"]);
 
+//add / edit
 async function submit(formEl: FormInstance | undefined) {
   if (!formEl) return;
   await formEl.validate(valid => {
@@ -49,6 +51,7 @@ async function submit(formEl: FormInstance | undefined) {
   });
 }
 
+//弹窗关闭
 function close(formEl: FormInstance | undefined) {
   if (!formEl) return;
   formEl.resetFields();

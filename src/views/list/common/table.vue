@@ -39,14 +39,17 @@ type popupItem = {
 
 const emit = defineEmits(["on-list"]);
 
+//关闭弹窗
 function closeDialog(type: boolean) {
   data.dialogVisible = type;
 }
 
+//分页函数
 function goPage(val: number) {
   emit("on-list", val);
 }
 
+//add/edit
 function Submit(item: popupItem) {
   if (data.Tips == "修改") {
     editApi(item).then(res => {
@@ -77,11 +80,13 @@ const data = reactive({
   addFormField: {},
 });
 
+//弹窗展示
 function add(type: string, row?: popupItem) {
   data.dialogVisible = true;
   data.Tips = type == "edit" ? "修改" : "添加";
   data.addFormField = JSON.parse(JSON.stringify(row)) || {};
 }
+//删除
 function del(id: number) {
   console.log(id);
   ElMessageBox.confirm("确认删除?", "提示", {
