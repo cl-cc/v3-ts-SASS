@@ -28,16 +28,35 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import itemPopup from "./popup.vue";
 import { editApi, addApi } from "@/api/lists";
 
-type popupItem = {
+interface popupItem {
   street_name: string;
   recover_num: number;
   coverage_num: number;
   create_time?: string;
   update_time?: string;
   id: number;
+}
+
+type Props = {
+  list: any;
+  page: number;
 };
 
+defineProps<Props>();
 const emit = defineEmits(["on-list"]);
+
+const data = reactive({
+  dialogVisible: false,
+  Tips: "修改",
+  addFormField: {},
+});
+
+//弹窗展示
+function add(type: string, row?: popupItem) {
+  data.dialogVisible = true;
+  data.Tips = type == "edit" ? "修改" : "添加";
+  data.addFormField = row ? JSON.parse(JSON.stringify(row)) : {};
+}
 
 //关闭弹窗
 function closeDialog(type: boolean) {
@@ -74,18 +93,6 @@ function Submit(item: popupItem) {
   }
 }
 
-const data = reactive({
-  dialogVisible: false,
-  Tips: "修改",
-  addFormField: {},
-});
-
-//弹窗展示
-function add(type: string, row?: popupItem) {
-  data.dialogVisible = true;
-  data.Tips = type == "edit" ? "修改" : "添加";
-  data.addFormField = JSON.parse(JSON.stringify(row)) || {};
-}
 //删除
 function del(id: number) {
   console.log(id);
@@ -102,12 +109,5 @@ function del(id: number) {
     emit("on-list");
   });
 }
-
-type Props = {
-  list: any;
-  page: number;
-};
-
-defineProps<Props>();
 </script>
 <style lang="less" scoped></style>

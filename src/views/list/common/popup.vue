@@ -1,7 +1,7 @@
 <template>
   <!-- add/edit弹窗 -->
   <div>
-    <el-dialog v-model="dialogVisible" :title="Tips" width="30%" :before-close="close">
+    <el-dialog v-model="dialogVisible" :title="Tips" width="30%" :close-on-click-modal="false">
       <el-form ref="addForm" :model="addFormField" label-width="100px" :rules="rules">
         <el-form-item label="镇街名称" prop="street_name">
           <el-input v-model="addFormField.street_name" placeholder="请输入镇街名称"></el-input>
@@ -47,12 +47,15 @@ async function submit(formEl: FormInstance | undefined) {
   await formEl.validate(valid => {
     if (valid) {
       emit("on-submit", data.addFormField);
+      formEl.resetFields();
     }
   });
 }
 
 //弹窗关闭
 function close(formEl: FormInstance | undefined) {
+  console.log(formEl);
+
   if (!formEl) return;
   formEl.resetFields();
   emit("on-close", false);
