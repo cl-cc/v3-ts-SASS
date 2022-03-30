@@ -32,6 +32,8 @@ type Item = {
   Tips: string;
   addFormField: any;
 };
+const data = defineProps<Item>();
+
 //验证必填
 const rules = {
   street_name: [{ required: true, message: "请输入镇街名称", trigger: "blur" }],
@@ -60,7 +62,5 @@ function close(formEl: FormInstance | undefined) {
   formEl.resetFields();
   emit("on-close", false);
 }
-
-const data = defineProps<Item>();
 </script>
 <style lang="less" scoped></style>

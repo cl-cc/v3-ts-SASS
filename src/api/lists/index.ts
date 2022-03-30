@@ -1,7 +1,7 @@
 import request from "../../config/http"
 
 //list
-export function listsApi(params: object) {
+export function listsApi(params?: object) {
     return request({
         url: '/admin/branch/Street_Manage/getStreetList',
         method: 'post',
@@ -9,7 +9,7 @@ export function listsApi(params: object) {
     })
 }
 //add
-export function addApi(params: object) {
+export function addApi(params?: object) {
     return request({
         url: '/admin/branch/Street_Manage/addStreet',
         method: 'post',
@@ -17,7 +17,7 @@ export function addApi(params: object) {
     })
 }
 //edit
-export function editApi(params: object) {
+export function editApi(params?: object) {
     return request({
         url: '/admin/branch/Street_Manage/editStreet',
         method: 'post',
