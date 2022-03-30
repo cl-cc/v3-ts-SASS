@@ -17,7 +17,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://hangzhou.linkunst.com',
+        target: 'http://huanqiang.linkunst.com',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       }

@@ -18,6 +18,8 @@ type NavbarItem = {
 const tagsList = ref<NavbarItem[]>([]);
 const router = useRouter();
 
+setTags(router);
+
 watch(
   () => router,
   (newValue: any) => {

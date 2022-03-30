@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [{
     }, {
         path: '/index/list',
         name: '列表',
-        component: () => import('../views/list.vue')
+        component: () => import('../views/list/index.vue')
     }, {
         path: '/error/401',
         name: '401',

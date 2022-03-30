@@ -1,28 +1,27 @@
 <template>
   <!-- 子组件 -->
   <div id="top_charts"></div>
+  <el-button @click="to">派发</el-button>
 </template>
 <script setup lang="ts">
+import { log } from "console";
 import * as echarts from "echarts";
 
 type Props = {
   data: any;
 };
 
-let item = defineProps<Props>();
+const data = defineProps<Props>();
 
-console.log(item.data);
-
-watch(item, (newVal, oldVal) => {
-  console.log(newVal);
-  console.log(oldVal);
+nextTick(() => {
   initcharts();
 });
 
-const developmentInfo = reactive({
-  one: 0,
-  two: 0,
-});
+const emit = defineEmits(["on-to"]);
+
+function to() {
+  emit("on-to", data);
+}
 
 function initcharts() {
   const charts = document.getElementById("top_charts") as HTMLDivElement;
@@ -33,11 +32,11 @@ function initcharts() {
   let echartData = [
     {
       name: "农贸市场",
-      value: developmentInfo.one,
+      value: data.data.info.ring.one,
     },
     {
       name: "集散中心",
-      value: developmentInfo.two,
+      value: data.data.info.ring.two,
     },
   ];
   chart.value.setOption({
