@@ -24,6 +24,10 @@ const routes: Array<RouteRecordRaw> = [{
         path: '/error/404',
         name: '404',
         component: () => import('../views/error/404.vue')
+    }, {
+        path: '/bigdata/index',
+        name: '大数据可视化',
+        component: () => import('../views/bigdata/index.vue')
     }
     ]
 }]

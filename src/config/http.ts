@@ -2,6 +2,8 @@ import axios from 'axios'
 
 let url: any = import.meta.env
 
+
+
 const service = axios.create({
     baseURL: url.VITE_APP_BASE_API,  // url = base url + request url
     timeout: 40 * 1000, // 默认用40s超时时间

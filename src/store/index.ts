@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { Names } from './store-namespace'
 
+type PromiseItem = {
+    list: string[],
+    num: number[]
+}
+
 export const useTestStore = defineStore(Names.Test, {
     state: () => {
         return {
@@ -170,8 +175,7 @@ export const useTestStore = defineStore(Names.Test, {
     },
     getters: {},
     actions: {
-
-        setPiechart() {
+        setPiechart(): Promise<PromiseItem> {
             return new Promise(resolve => {
                 resolve(this.piechart)
             })

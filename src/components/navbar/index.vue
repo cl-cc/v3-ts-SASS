@@ -67,7 +67,7 @@ function setTags(route: any) {
     align-items: center;
   }
   &-li {
-    width: 50px;
+    width: auto;
     height: 25px;
     line-height: 25px;
     background: #5ddab4;
@@ -78,6 +78,8 @@ function setTags(route: any) {
     border-radius: 5px;
     border: 1px solid rgba(124, 141, 181, 0.3);
     cursor: pointer;
+    overflow: hidden;
+    padding: 0 10px;
   }
 }
 </style>

@@ -15,4 +15,3 @@ router.afterEach(() => {
     NProgress.done()
 })
 
-console.log(router);

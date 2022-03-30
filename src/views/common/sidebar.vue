@@ -63,6 +63,22 @@ const list = reactive<MenuItem[]>([
       },
     ],
   },
+  {
+    id: 3,
+    parent_id: 3,
+    rule_icon: "location",
+    rule_name: "数据可视化",
+    rule_url: "/index",
+    children: [
+      {
+        id: 1,
+        parent_id: 1,
+        rule_icon: "location",
+        rule_name: "大数据可视化",
+        rule_url: "/bigdata/index",
+      },
+    ],
+  },
 ]);
 </script>
 
