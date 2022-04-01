@@ -24,7 +24,7 @@
 </template>
 <script setup lang="ts">
 //获取element实例
-import { FormInstance } from "element-plus";
+import { FormInstance, FormItemRule } from "element-plus";
 const addForm = ref<FormInstance>();
 
 type Item = {
@@ -34,12 +34,23 @@ type Item = {
 };
 const data = defineProps<Item>();
 
+type From = {
+  street_name: string;
+  recover_num: number;
+  coverage_num: number;
+};
+
+//验证规则
+type Rules = {
+  [k in keyof From]?: Array<FormItemRule>;
+};
+
 //验证必填
-const rules = {
+const rules = reactive<Rules>({
   street_name: [{ required: true, message: "请输入镇街名称", trigger: "blur" }],
   recover_num: [{ required: true, message: "请输入覆盖户数量", trigger: "blur" }],
   coverage_num: [{ required: true, message: "请输入回收点数量", trigger: "blur" }],
-};
+});
 
 const emit = defineEmits(["on-submit", "on-close"]);
 

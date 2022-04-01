@@ -33,6 +33,7 @@ function sign() {
     ElMessage.error("请输入用户名和密码");
     return;
   }
+  localStorage.setItem("token", "214116");
   window.location.href = "/index/data";
   // ajax
   // loginApi(info).then(res => {

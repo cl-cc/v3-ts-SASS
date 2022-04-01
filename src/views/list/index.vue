@@ -37,7 +37,7 @@ function getData() {
     if (res.data.status === 1) {
       tableList.tableData = res.data.data;
       tableList.num = res.data.total;
-    } else ElMessage.error(res.data.reason);
+    } else ElMessage.error(res.data.msg);
   });
 }
 </script>

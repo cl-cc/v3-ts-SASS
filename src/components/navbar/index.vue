@@ -45,7 +45,7 @@ function setTags(route: any) {
       tagsList.value.shift();
     }
     tagsList.value.push({
-      title: route.currentRoute.value.name,
+      title: route.currentRoute.value.meta.title,
       path: route.currentRoute.value.fullPath,
     });
   }

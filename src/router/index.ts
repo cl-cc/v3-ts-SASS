@@ -1,8 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+declare module 'vue-router' {
+    interface RouteMeta {
+        title: string,
+        transition?: string
+    }
+}
+
+
 const routes: Array<RouteRecordRaw> = [{
     path: '/',
     name: 'Login',
+    meta: {
+        title: '登录',
+        transition: 'animate__backInLeft'
+    },
     component: () => import('@/views/login.vue')
 }, {
     path: '/index',
@@ -10,23 +22,38 @@ const routes: Array<RouteRecordRaw> = [{
     component: () => import('../views/Home.vue'),
     children: [{
         path: '/index/data',
-        name: '首页',
+        meta: {
+            title: '首页',
+            transition: 'animate__fadeIn'
+        },
         component: () => import('@/views/data.vue')
     }, {
         path: '/index/list',
-        name: '列表',
+        meta: {
+            title: '列表',
+            transition: 'animate__fadeIn'
+        },
         component: () => import('@/views/list/index.vue')
     }, {
         path: '/error/401',
-        name: '401',
+        meta: {
+            title: '401',
+            transition: 'animate__fadeIn'
+        },
         component: () => import('@/views/error/401.vue')
     }, {
         path: '/error/404',
-        name: '404',
+        meta: {
+            title: '404',
+            transition: 'animate__fadeIn'
+        },
         component: () => import('@/views/error/404.vue')
     }, {
         path: '/bigdata/index',
-        name: '大数据可视化',
+        meta: {
+            title: '大数据可视化',
+            transition: 'animate__fadeIn'
+        },
         component: () => import('@/views/bigdata/index.vue')
     }
     ]
@@ -34,6 +61,15 @@ const routes: Array<RouteRecordRaw> = [{
 
 const router = createRouter({
     history: createWebHistory(),
+    scrollBehavior: (to, from, savedPosition) => {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return {
+                top: 0
+            }
+        }
+    },
     routes
 })
 
