@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button type="info" @click="add('add')">添加</el-button>
-    <el-table :data="list" stripe style="width: 100%">
+    <el-table :data="list" stripe row-key="id" style="width: 100%">
       <el-table-column prop="street_name" label="镇街名称" align="center" />
       <el-table-column prop="recover_num" label="覆盖户数量" align="center" />
       <el-table-column prop="coverage_num" label="回收点数量" align="center" />
@@ -27,6 +27,26 @@ import { Edit, Delete } from "@element-plus/icons-vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import itemPopup from "./popup.vue";
 import { editApi, addApi } from "@/api/lists";
+//新增拖拽
+import Sortable from "sortablejs";
+
+//默认调用
+onMounted(() => {
+  rowDrop();
+});
+
+//拖拽行
+function rowDrop() {
+  const tbody = document.querySelector(".el-table__body-wrapper tbody") as HTMLDivElement;
+  let tableData = PropList.list;
+  Sortable.create(tbody, {
+    onEnd({ newIndex, oldIndex }) {
+      tableData.splice(newIndex, 0, tableData.splice(oldIndex, 1)[0]);
+      let newArray = [];
+      newArray = tableData.slice(0);
+    },
+  });
+}
 
 interface popupItem {
   street_name: string;
@@ -42,7 +62,8 @@ type Props = {
   page: number;
 };
 
-defineProps<Props>();
+const PropList = defineProps<Props>();
+
 const emit = defineEmits(["on-list"]);
 
 const data = reactive({

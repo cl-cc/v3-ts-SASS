@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- table -->
-    <itemTable @on-list="go_page" :list="tableList.tableData" :page="tableList.num" />
+    <itemTable @on-list="go_page" :list="tableList.tableData" :page="tableList.num" v-if="tableList.tableData.length" />
   </div>
 </template>
 <script setup lang="ts">
@@ -27,6 +27,28 @@ const tableList = reactive<Item>({
   num: 0,
 });
 
+//模拟数据
+const list = [
+  {
+    id: 1,
+    street_name: "测试",
+    recover_num: 10,
+    coverage_num: 1,
+  },
+  {
+    id: 2,
+    street_name: "测试1",
+    recover_num: 10,
+    coverage_num: 1,
+  },
+  {
+    id: 3,
+    street_name: "测试2",
+    recover_num: 10,
+    coverage_num: 1,
+  },
+];
+
 //获取数据
 getData();
 function getData() {
@@ -34,8 +56,10 @@ function getData() {
     page: tableList.currentPage,
   };
   listsApi(data).then(res => {
+    //假数据
+    tableList.tableData = list;
     if (res.data.status === 1) {
-      tableList.tableData = res.data.data;
+      // tableList.tableData = res.data.data;
       tableList.num = res.data.total;
     } else ElMessage.error(res.data.msg);
   });
