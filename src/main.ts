@@ -6,9 +6,14 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import { createPinia } from 'pinia'
 import '@/permission'
+import { getTimeRange, parseDate, debounce } from '@/utils'
+import { TIME_RANGE, PARSE_DATE, DEBOUNCE } from '@/symbol'
 
 const store = createPinia()
 const app = createApp(App)
+app.provide(TIME_RANGE, getTimeRange)
+app.provide(PARSE_DATE, parseDate)
+app.provide(DEBOUNCE, debounce)
 
 app.use(router)
 app.use(ElementPlus)
