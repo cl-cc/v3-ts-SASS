@@ -29,10 +29,14 @@ const addForm = ref<FormInstance>();
 
 type Item = {
   dialogVisible: boolean;
-  Tips: string;
+  Tips?: string;
   addFormField: any;
 };
-const data = defineProps<Item>();
+
+const data = withDefaults(defineProps<Item>(), {
+  dialogVisible: false,
+  Tips: "我是默认的标题",
+});
 
 type From = {
   street_name: string;

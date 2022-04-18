@@ -1,24 +1,56 @@
 <template>
   <div class="main">
-    <!-- 父组件 -->
-    <div class="left">
-      <topcharts @on-to="getList" v-if="data.info" :data="data" />
-      <div>子组件的参数 == {{ x.ring }}</div>
-      <div>子组件的参数 == {{ x.status }}</div>
-    </div>
+    <el-button class="out" type="info" @click="exportBox">导出流程图</el-button>
+    <div id="container" ref="container"></div>
   </div>
 </template>
 <script setup lang="ts">
-import topcharts from "./common/topcharts.vue";
 import { dataListApi } from "@/api/bigdata";
+import LogicFlow from "@logicflow/core";
+import { Snapshot } from "@logicflow/extension";
+import "@logicflow/core/dist/style/index.css";
+LogicFlow.use(Snapshot);
 
-getData();
-
-function getData() {
-  dataListApi({}).then(res => {
-    data.info = res.data;
+nextTick(() => {
+  const lf = new LogicFlow({
+    container: document.getElementById("container") as HTMLDivElement,
+    grid: true,
   });
-}
+  lf.render({
+    nodes: [
+      {
+        id: "1",
+        type: "rect",
+        x: 100,
+        y: 100,
+        text: "节点1",
+      },
+      {
+        id: "2",
+        type: "circle",
+        x: 300,
+        y: 200,
+        text: "节点2",
+      },
+    ],
+    edges: [
+      {
+        sourceNodeId: "1",
+        targetNodeId: "2",
+        type: "polyline",
+        text: "连线",
+      },
+    ],
+  });
+});
+
+// getData();
+
+// function getData() {
+//   dataListApi({}).then(res => {
+//     data.info = res.data;
+//   });
+// }
 
 // // 假设我们需要从后端拿取数据，渲染到页面，就可以这么定义接口：
 // interface List {    //interface定义List接口，包含两个成员
@@ -126,6 +158,12 @@ function go(e: number) {
 </script>
 <style lang="less" scoped>
 .main {
-  background: #ccc;
+  .out {
+    margin: 20px;
+  }
+  #container {
+    width: 100%;
+    height: 500px;
+  }
 }
 </style>

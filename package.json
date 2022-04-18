@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@logicflow/core": "^1.1.11",
+    "@logicflow/extension": "^1.1.11",
     "animate.css": "^4.1.1",
     "axios": "^0.26.1",
     "echarts": "^5.3.1",
