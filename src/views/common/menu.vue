@@ -2,7 +2,7 @@
   <div class="navBox">
     <template v-for="item in list" :key="item.id">
       <el-menu
-        @click="getItem(item)"
+        @click.stop="getItem(item)"
         text-color="#162b64"
         active-text-color="#57caeb"
         router
@@ -15,7 +15,7 @@
             <el-icon><Grid /></el-icon>
             <span>{{ item.rule_name }}</span>
           </template>
-          <Menu :list="item.children" v-if="item?.children?.length" />
+          <Menu @on-item="getItem" :list="item.children" v-if="item?.children?.length" />
         </el-sub-menu>
         <el-menu-item :index="item.rule_url" v-else>
           <template #title>
