@@ -24,35 +24,35 @@ const routes: Array<RouteRecordRaw> = [{
         path: '/index/data',
         meta: {
             title: '首页',
-            transition: 'animate__fadeIn'
+            transition: 'animate__backInLeft'
         },
         component: () => import('@/views/data.vue')
     }, {
         path: '/index/list',
         meta: {
             title: '列表',
-            transition: 'animate__fadeIn'
+            transition: 'animate__backInLeft'
         },
         component: () => import('@/views/list/index.vue')
     }, {
         path: '/error/401',
         meta: {
             title: '401',
-            transition: 'animate__fadeIn'
+            transition: 'animate__backInLeft'
         },
         component: () => import('@/views/error/401.vue')
     }, {
         path: '/error/404',
         meta: {
             title: '404',
-            transition: 'animate__fadeIn'
+            transition: 'animate__backInLeft'
         },
         component: () => import('@/views/error/404.vue')
     }, {
         path: '/bigdata/index',
         meta: {
             title: '大数据可视化',
-            transition: 'animate__fadeIn'
+            transition: 'animate__backInLeft'
         },
         component: () => import('@/views/bigdata/index.vue')
     }

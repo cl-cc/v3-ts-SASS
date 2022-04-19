@@ -1,7 +1,15 @@
 <template>
   <div class="navBox">
     <template v-for="item in list" :key="item.id">
-      <el-menu text-color="#162b64" active-text-color="#57caeb" router :unique-opened="true" :default-active="defaultPath" unique-opened>
+      <el-menu
+        @click="getItem(item)"
+        text-color="#162b64"
+        active-text-color="#57caeb"
+        router
+        :unique-opened="true"
+        :default-active="defaultPath"
+        unique-opened
+      >
         <el-sub-menu :index="item.rule_url" :key="item.rule_url" v-if="item.children?.length">
           <template #title>
             <el-icon><Grid /></el-icon>
@@ -26,14 +34,6 @@ const router = useRouter();
 
 const defaultPath = ref<string>();
 
-watch(
-  () => router,
-  (newValue: any) => {
-    defaultPath.value = newValue.currentRoute.value.fullPath;
-  },
-  { immediate: true, deep: true }
-);
-
 type MenuItem = {
   id: number;
   parent_id: number;
@@ -47,7 +47,26 @@ type Props = {
   list?: MenuItem[];
 };
 
-defineProps<Props>();
+//字面量接受
+withDefaults(defineProps<Props>(), {
+  list: () => [],
+});
+
+//将item传出去
+const emit = defineEmits(["on-item"]);
+
+function getItem(item: MenuItem) {
+  emit("on-item", item);
+}
+
+//监听
+watch(
+  () => router,
+  (newValue: any) => {
+    defaultPath.value = newValue.currentRoute.value.fullPath;
+  },
+  { immediate: true, deep: true }
+);
 </script>
 <script lang="ts">
 export default {

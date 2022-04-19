@@ -1,6 +1,6 @@
 <template>
   <div class="tac">
-    <Menu :list="list" />
+    <Menu @on-item="getItem" :list="list" />
   </div>
 </template>
 
@@ -15,6 +15,11 @@ type MenuItem = {
   rule_icon?: string;
   children?: MenuItem[] | [];
 };
+
+//接受menu传过来的参数
+function getItem(item: MenuItem) {
+  console.log(item.rule_url);
+}
 
 const list = reactive<MenuItem[]>([
   {
@@ -37,6 +42,15 @@ const list = reactive<MenuItem[]>([
         rule_icon: "location",
         rule_name: "列表",
         rule_url: "/index/list",
+        children: [
+          {
+            id: 1,
+            parent_id: 1,
+            rule_icon: "location",
+            rule_name: "列表3",
+            rule_url: "/index/list",
+          },
+        ],
       },
     ],
   },
