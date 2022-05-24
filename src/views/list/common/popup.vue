@@ -24,7 +24,7 @@
 </template>
 <script setup lang="ts">
 //获取element实例
-import { FormInstance, FormItemRule } from "element-plus";
+import { FormInstance, FormItemRule } from 'element-plus';
 const addForm = ref<FormInstance>();
 
 type Item = {
@@ -35,7 +35,7 @@ type Item = {
 
 const data = withDefaults(defineProps<Item>(), {
   dialogVisible: false,
-  Tips: "我是默认的标题",
+  Tips: '我是默认的标题',
 });
 
 type From = {
@@ -51,19 +51,19 @@ type Rules = {
 
 //验证必填
 const rules = reactive<Rules>({
-  street_name: [{ required: true, message: "请输入镇街名称", trigger: "blur" }],
-  recover_num: [{ required: true, message: "请输入覆盖户数量", trigger: "blur" }],
-  coverage_num: [{ required: true, message: "请输入回收点数量", trigger: "blur" }],
+  street_name: [{ required: true, message: '请输入镇街名称', trigger: 'blur' }],
+  recover_num: [{ required: true, message: '请输入覆盖户数量', trigger: 'blur' }],
+  coverage_num: [{ required: true, message: '请输入回收点数量', trigger: 'blur' }],
 });
 
-const emit = defineEmits(["on-submit", "on-close"]);
+const emit = defineEmits(['on-submit', 'on-close']);
 
 //add / edit
 async function submit(formEl: FormInstance | undefined) {
   if (!formEl) return;
   await formEl.validate(valid => {
     if (valid) {
-      emit("on-submit", data.addFormField);
+      emit('on-submit', data.addFormField);
       formEl.resetFields();
     }
   });
@@ -75,7 +75,7 @@ function close(formEl: FormInstance | undefined) {
 
   if (!formEl) return;
   formEl.resetFields();
-  emit("on-close", false);
+  emit('on-close', false);
 }
 </script>
 <style lang="less" scoped></style>
