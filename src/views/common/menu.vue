@@ -1,15 +1,7 @@
 <template>
   <div class="navBox">
     <template v-for="item in list" :key="item.id">
-      <el-menu
-        @click.stop="getItem(item)"
-        text-color="#162b64"
-        active-text-color="#57caeb"
-        router
-        :unique-opened="true"
-        :default-active="defaultPath"
-        unique-opened
-      >
+      <el-menu @click.stop="getItem(item)" text-color="#162b64" active-text-color="#57caeb" router :unique-opened="true" :default-active="defaultPath">
         <el-sub-menu :index="item.rule_url" :key="item.rule_url" v-if="item.children?.length">
           <template #title>
             <el-icon><Grid /></el-icon>
@@ -28,8 +20,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Grid, Histogram } from "@element-plus/icons-vue";
-import { useRouter } from "vue-router";
+import { Grid, Histogram } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const defaultPath = ref<string>();
@@ -53,10 +45,10 @@ withDefaults(defineProps<Props>(), {
 });
 
 //将item传出去
-const emit = defineEmits(["on-item"]);
+const emit = defineEmits(['on-item']);
 
 function getItem(item: MenuItem) {
-  emit("on-item", item);
+  emit('on-item', item);
 }
 
 //监听
@@ -70,7 +62,7 @@ watch(
 </script>
 <script lang="ts">
 export default {
-  name: "Menu",
+  name: 'Menu',
 };
 </script>
 <style lang="less" scoped>

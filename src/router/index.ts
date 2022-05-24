@@ -1,76 +1,91 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 declare module 'vue-router' {
-    interface RouteMeta {
-        title: string,
-        transition?: string
-    }
+  interface RouteMeta {
+    title: string;
+    transition?: string;
+  }
 }
 
-
-const routes: Array<RouteRecordRaw> = [{
+const routes: Array<RouteRecordRaw> = [
+  {
     path: '/',
     name: 'Login',
     meta: {
-        title: '登录',
-        transition: 'animate__backInLeft'
+      title: '登录',
+      transition: 'animate__backInLeft',
     },
-    component: () => import('@/views/login.vue')
-}, {
+    component: () => import('@/views/login.vue'),
+  },
+  {
     path: '/index',
     name: 'Index',
     component: () => import('../views/Home.vue'),
-    children: [{
+    children: [
+      {
         path: '/index/data',
         meta: {
-            title: '首页',
-            transition: 'animate__backInLeft'
+          title: '首页',
+          transition: 'animate__backInLeft',
         },
-        component: () => import('@/views/data.vue')
-    }, {
+        component: () => import('@/views/data.vue'),
+      },
+      {
         path: '/index/list',
         meta: {
-            title: '列表',
-            transition: 'animate__backInLeft'
+          title: '列表',
+          transition: 'animate__backInLeft',
         },
-        component: () => import('@/views/list/index.vue')
-    }, {
+        component: () => import('@/views/list/index.vue'),
+      },
+      {
+        path: '/index/complexList',
+        meta: {
+          title: '列表',
+          transition: 'animate__backInLeft',
+        },
+        component: () => import('@/views/complexList/index.vue'),
+      },
+      {
         path: '/error/401',
         meta: {
-            title: '401',
-            transition: 'animate__backInLeft'
+          title: '401',
+          transition: 'animate__backInLeft',
         },
-        component: () => import('@/views/error/401.vue')
-    }, {
+        component: () => import('@/views/error/401.vue'),
+      },
+      {
         path: '/error/404',
         meta: {
-            title: '404',
-            transition: 'animate__backInLeft'
+          title: '404',
+          transition: 'animate__backInLeft',
         },
-        component: () => import('@/views/error/404.vue')
-    }, {
+        component: () => import('@/views/error/404.vue'),
+      },
+      {
         path: '/bigdata/index',
         meta: {
-            title: '大数据可视化',
-            transition: 'animate__backInLeft'
+          title: '流程图',
+          transition: 'animate__backInLeft',
         },
-        component: () => import('@/views/bigdata/index.vue')
-    }
-    ]
-}]
+        component: () => import('@/views/bigdata/index.vue'),
+      },
+    ],
+  },
+];
 
 const router = createRouter({
-    history: createWebHistory(),
-    scrollBehavior: (to, from, savedPosition) => {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            return {
-                top: 0
-            }
-        }
-    },
-    routes
-})
+  history: createWebHistory(),
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return {
+        top: 0,
+      };
+    }
+  },
+  routes,
+});
 
 export default router;

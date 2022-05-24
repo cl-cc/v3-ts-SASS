@@ -1,14 +1,14 @@
 <template>
   <div class="navbar">
     <ul class="navbar-ul">
-      <li :class="{ active: !isActive(item.path) }" @click="goLink(item.path)" class="navbar-li" v-for="item in tagsList">
+      <li :class="{ active: !isActive(item.path) }" @click="goLink(item.path)" class="navbar-li" v-for="(item, index) in tagsList" :key="index">
         {{ item.title }}
       </li>
     </ul>
   </div>
 </template>
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 
 type NavbarItem = {
   title: string;
