@@ -7,6 +7,7 @@
     :optionIsNeed="true"
     :editIsNeed="true"
     :deleteIsNeed="true"
+    :indexFlag="true"
     @handleEdit="handleEdit"
     @handleDelete="handleDelete"
   >

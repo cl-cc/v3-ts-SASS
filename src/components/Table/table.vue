@@ -3,6 +3,8 @@
     <el-table class="table" :data="tableData" v-loading="loading" :row-class-name="rowClassName" @selection-change="handleSelectionChange" border>
       <!-- 多选 -->
       <el-table-column v-if="selectionIsNeed" type="selection" width="55"> </el-table-column>
+      <!-- 序号 -->
+      <el-table-column label="序号" align="center" width="80" v-if="indexFlag" type="index"></el-table-column>
       <!-- 表头 -->
       <el-table-column v-for="column in columns" :key="column.prop" :prop="column.prop" :label="column.label" :min-width="column.minWidth"> </el-table-column>
       <!-- 操作 -->
@@ -30,6 +32,7 @@ type Props = {
   optionIsNeed: boolean;
   editIsNeed: boolean;
   deleteIsNeed: boolean;
+  indexFlag: boolean;
   optionWidth: string;
   rowClassName: string;
 };
@@ -40,6 +43,7 @@ withDefaults(defineProps<Props>(), {
   optionIsNeed: false,
   editIsNeed: false,
   deleteIsNeed: false,
+  indexFlag: false,
   optionWidth: '100px',
   rowClassName: '',
 });
