@@ -6,7 +6,7 @@
           <img :src="visits" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Visits</div>
+          <div class="card-panel-text">{{ $t('home.card') }}</div>
           <CountTo ref="myCount" :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
         </div>
       </div>
@@ -17,7 +17,7 @@
           <img :src="messages" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Messages</div>
+          <div class="card-panel-text">{{ $t('home.card1') }}</div>
           <CountTo ref="myCount" :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
         </div>
       </div>
@@ -28,7 +28,7 @@
           <img :src="purchases" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Purchases</div>
+          <div class="card-panel-text">{{ $t('home.card2') }}</div>
           <CountTo ref="myCount" :start-val="0" :end-val="9280" :duration="3600" class="card-panel-num" />
         </div>
       </div>
@@ -39,7 +39,7 @@
           <img :src="shoppings" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Shoppings</div>
+          <div class="card-panel-text">{{ $t('home.card3') }}</div>
           <CountTo ref="myCount" :start-val="0" :end-val="13600" :duration="4000" class="card-panel-num" />
         </div>
       </div>
@@ -47,13 +47,13 @@
   </el-row>
 </template>
 <script setup lang="ts">
-import { CountTo } from "vue3-count-to";
-import messages from "../../assets/images/index/messages.png";
-import purchases from "../../assets/images/index/purchases.png";
-import shoppings from "../../assets/images/index/shoppings.png";
-import visits from "../../assets/images/index/visits.png";
+import { CountTo } from 'vue3-count-to';
+import messages from '../../assets/images/index/messages.png';
+import purchases from '../../assets/images/index/purchases.png';
+import shoppings from '../../assets/images/index/shoppings.png';
+import visits from '../../assets/images/index/visits.png';
 
-import { useTestStore } from "@/store";
+import { useTestStore } from '@/store';
 const STORE = useTestStore();
 </script>
 <style lang="less" scoped>
@@ -127,6 +127,8 @@ const STORE = useTestStore();
 
       .card-panel-num {
         font-size: 26px;
+        text-align: right;
+        width: 140px;
       }
     }
   }

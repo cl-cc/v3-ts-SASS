@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
 import Menu from './menu.vue';
+import i18n from '@/i18n/index';
 
 type MenuItem = {
   id: number;
@@ -26,7 +27,7 @@ const list = reactive<MenuItem[]>([
     id: 0,
     parent_id: 0,
     rule_icon: 'location',
-    rule_name: '系统首页',
+    rule_name: i18n.global.t('menuRouter.index'),
     rule_url: '/index/data',
   },
   {

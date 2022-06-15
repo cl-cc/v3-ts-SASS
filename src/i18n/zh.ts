@@ -1,0 +1,24 @@
+// zh.ts 文件内容
+
+export default {
+  login: {
+    title: '登录',
+    ipt_name: '账号',
+    ipt_psd: '密码',
+    btn_login: '登录',
+    tips_btn: '记住我',
+    forget_psd: '忘记密码?',
+    btn_bottom: '手机登录',
+    btn_bottom1: '二维码登录',
+    btn_bottom2: '注册',
+  },
+  menuRouter: {
+    index: '系统首页',
+  },
+  home: {
+    card: '最新访问',
+    card1: '最新消息',
+    card2: '最新购买',
+    card3: '最新购物',
+  },
+};
