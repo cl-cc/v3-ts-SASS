@@ -6,10 +6,10 @@
     <div class="login-main">
       <h3>{{ $t('login.title') }}</h3>
       <div class="login-info">
-        <el-input v-model="info.user_name" class="login_ipt" style="width: 400px" :prefix-icon="Avatar" :placeholder="$t('login.ipt_name')"></el-input>
+        <el-input v-model="info.username" class="login_ipt" style="width: 400px" :prefix-icon="Avatar" :placeholder="$t('login.ipt_name')"></el-input>
       </div>
       <div class="login-info">
-        <el-input v-model="info.user_password" class="login_ipt" style="width: 400px" :prefix-icon="WarningFilled" :placeholder="$t('login.ipt_psd')"></el-input>
+        <el-input v-model="info.password" class="login_ipt" style="width: 400px" :prefix-icon="WarningFilled" :placeholder="$t('login.ipt_psd')"></el-input>
       </div>
       <el-button type="info" @click="sign" class="btn">{{ $t('login.btn_login') }}</el-button>
       <div class="operation_login">
@@ -27,19 +27,25 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus';
 import { Avatar, WarningFilled, SetUp } from '@element-plus/icons-vue';
-import { loginApi } from '../api/index';
+import { loginApi } from '@/api/index';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
 const langT = ref<boolean>(false);
 
 type infoItem = {
-  user_name: string;
-  user_password: string;
+  grant_type: string;
+  client_id: string;
+  client_secret: string;
+  username: string;
+  password: string;
 };
 
 const info = reactive<infoItem>({
-  user_name: '',
-  user_password: '',
+  grant_type: 'password',
+  client_id: '2',
+  client_secret: 'YB0COWApYNgFLNyfXoE3oC26PBa1xQ3mETsxMKdH',
+  username: '',
+  password: '',
 });
 
 //语言切换
@@ -55,21 +61,15 @@ function errorClick() {
 }
 
 function sign() {
-  if (info.user_name === '' || info.user_password === '') {
+  if (info.username === '' || info.password === '') {
     ElMessage.error('请输入用户名和密码');
     return;
   }
-  localStorage.setItem('token', '214116');
-  window.location.href = '/index/data';
-  // ajax
-  // loginApi(info).then(res => {
-  //   if (res.data.status === 1) {
-  //     ElMessage.success(res.data.msg);
-  //     window.location.href = "/index/data";
-  //   } else {
-  //     ElMessage.error(res.data.msg);
-  //   }
-  // });
+  loginApi(info).then(res => {
+    localStorage.setItem('token', `Bearer ${res.data.access_token}`);
+    ElMessage.success('登录成功');
+    window.location.href = '/index/data';
+  });
 }
 </script>
 <style lang="less" scoped>

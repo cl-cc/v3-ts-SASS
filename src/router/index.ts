@@ -55,6 +55,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/packageList/index.vue'),
       },
       {
+        path: '/index/signList',
+        meta: {
+          title: '掘金签到列表',
+          transition: 'animate__backInLeft',
+        },
+        component: () => import('@/views/signList/index.vue'),
+      },
+      {
         path: '/error/401',
         meta: {
           title: '401',

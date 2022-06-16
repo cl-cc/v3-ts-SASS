@@ -6,7 +6,11 @@
       <!-- 序号 -->
       <el-table-column label="序号" align="center" width="80" v-if="indexFlag" type="index"></el-table-column>
       <!-- 表头 -->
-      <el-table-column v-for="column in columns" :key="column.prop" :prop="column.prop" :label="column.label" :min-width="column.minWidth"> </el-table-column>
+      <el-table-column v-for="column in columns" :key="column.prop" :prop="column.prop" :label="column.label" :min-width="column.minWidth" show-overflow-tooltip>
+        <template v-if="column.slot" #="{ row }">
+          <slot :name="column.prop" :row="row"></slot>
+        </template>
+      </el-table-column>
       <!-- 操作 -->
       <el-table-column v-if="optionIsNeed" fixed="right" label="操作" :width="optionWidth">
         <template #default="{ row, $index }">

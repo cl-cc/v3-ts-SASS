@@ -65,6 +65,13 @@ const list = reactive<MenuItem[]>([
             rule_name: '封装列表',
             rule_url: '/index/packageList',
           },
+          {
+            id: 4,
+            parent_id: 4,
+            rule_icon: 'location',
+            rule_name: '掘金签到列表',
+            rule_url: '/index/signList',
+          },
         ],
       },
     ],
